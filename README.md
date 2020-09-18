@@ -30,5 +30,8 @@ EXEMPLE
 ## Add to PATH
 
 ```bash
+$ nano ~/.bashrc
 
+export MKDIREX=<your_path>
+export PATH=$PATH:$MKDIREX
 ```

@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+
+usage() {
+  echo "" 1>&2;
+  echo "mkdirex $0 [-s <0|20>] [-e <0|20>] [-p <string>]" 1>&2;
+  echo "" 1>&2;
+  echo -e "\e[1mDESCRIPTION\e[0m" 1>&2;
+  echo -e "\tAutomatic make directories accroding to the number" 1>&2;
+  echo "" 1>&2;
+  echo -e "\t-s, Start of the sequence" 1>&2;
+  echo "" 1>&2;
+  echo -e "\t-e, End of the sequence" 1>&2;
+  echo "" 1>&2;
+  echo -e "\t-p, name of all directories" 1>&2;
+  echo "" 1>&2;
+  echo -e "\e[1mEXEMPLE\e[0m" 1>&2;
+  echo -e "\tmkdirex -s 1 -e 10 -p 'ex_' " 1>&2;
+  echo -e "\t>10 directories created !" 1>&2;
+  echo "" 1>&2;
+  echo -e "\tls" 1>&2;
+  echo -e "\t> ./ex_01 ./ex_02 ... " 1>&2;
+  echo "" 1>&2;
+
+  exit 1;
+}
+
+while getopts ":s:e:p:" o; do
+  case "${o}" in
+    s)
+      s=${OPTARG}
+      ((s >= 0 || s < 20)) || usage
+      ;;
+    e)
+      e=${OPTARG}
+      ((e > 0 && e <= 20)) || usage
+      ;;
+    p)
+      p=${OPTARG}
+      ;;
+    *)
+      usage
+      ;;
+  esac
+done
+shift $((OPTIND-1))
+
+if [ -z "${e}" ] || [ -z "${p}" ]; then
+  usage
+fi
+
+if [ -z "${s}" ]; then
+  s=1
+fi
+
+for i in `seq ${s} ${e}`; do
+  mkdir ./${p}${i};
+  echo -e "./${p}${i} Created!" 1>&2;
+done
+
+echo "Done!" 1>&2;

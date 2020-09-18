@@ -7,11 +7,11 @@ usage() {
   echo -e "\e[1mDESCRIPTION\e[0m" 1>&2;
   echo -e "\tAutomatic make directories accroding to the number" 1>&2;
   echo "" 1>&2;
-  echo -e "\t-s, Start of the sequence" 1>&2;
+  echo -e "\t-s, Start of the sequence [DEFAULT=1]" 1>&2;
   echo "" 1>&2;
-  echo -e "\t-e, End of the sequence" 1>&2;
+  echo -e "\t-e, End of the sequence [DEFAULT=5]" 1>&2;
   echo "" 1>&2;
-  echo -e "\t-p, name of all directories" 1>&2;
+  echo -e "\t-p, name of all directories [DEFAULT='ex_']" 1>&2;
   echo "" 1>&2;
   echo -e "\e[1mEXEMPLE\e[0m" 1>&2;
   echo -e "\tmkdirex -s 1 -e 10 -p 'ex_' " 1>&2;
@@ -28,7 +28,7 @@ while getopts ":s:e:p:" o; do
   case "${o}" in
     s)
       s=${OPTARG}
-      ((s >= 0 || s < 20)) || usage
+      ((s > 0 && s <= 20)) || usage
       ;;
     e)
       e=${OPTARG}
@@ -44,8 +44,12 @@ while getopts ":s:e:p:" o; do
 done
 shift $((OPTIND-1))
 
-if [ -z "${e}" ] || [ -z "${p}" ]; then
-  usage
+if [ -z "${p}" ]; then
+  p="ex_"
+fi
+
+if [ -z "${e}" ]; then
+  e=5
 fi
 
 if [ -z "${s}" ]; then

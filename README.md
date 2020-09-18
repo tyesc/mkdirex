@@ -4,17 +4,19 @@ Automatic make directories for Epitech exercices
 ## Usage
 
 ```bash
-mkdirex [-n <0|20>] [-p <string>]
+mkdirex [-s <0|20>] [-e <0|20>] [-p <string>]
 
 DESCRIPTION
   Automatic make directories accroding to the number
 
-  -n, how many files
+  -s, Start of the sequence [DEFAULT=1]
 
-  -s, name of all directories
+  -e, End of the sequence [DEFAULT=5]
+
+  -s, name of all directories [DEFAULT='ex_']
 
 EXEMPLE
-  $ mkdirex -s 5 -m "ex_"
+  $ mkdirex -e 5  -m "ex_"
   >
   ./ex_1 Created!
   ./ex_2 Created!

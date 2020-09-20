@@ -18,11 +18,11 @@ DESCRIPTION
 EXEMPLE
   $ mkdirex -e 5  -m "ex_"
   >
-  ./ex_1 Created!
-  ./ex_2 Created!
-  ./ex_3 Created!
-  ./ex_4 Created!
-  ./ex_5 Created!
+  ./ex_01 Created!
+  ./ex_02 Created!
+  ./ex_03 Created!
+  ./ex_04 Created!
+  ./ex_05 Created!
   Done!
 
   $ ls

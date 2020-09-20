@@ -57,8 +57,13 @@ if [ -z "${s}" ]; then
 fi
 
 for i in `seq ${s} ${e}`; do
-  mkdir ./${p}${i};
-  echo -e "./${p}${i} Created!" 1>&2;
+  if [ "${i}" -lt 10 ]; then
+    mkdir ./"${p}0${i}";
+    echo -e "./${p}0${i} Created!" 1>&2;
+  else
+    mkdir ./${p}${i};
+    echo -e "./${p}${i} Created!" 1>&2;
+  fi
 done
 
 echo "Done!" 1>&2;
